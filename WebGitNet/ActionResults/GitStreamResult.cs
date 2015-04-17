@@ -62,7 +62,9 @@ namespace WebGitNet.ActionResults
                     Stream wrapperStream = null;
                     try
                     {
-                        var input = realRequest.GetBufferlessInputStream(disableMaxRequestLength: true);
+                        // If framework 4.5!
+                        // var input = realRequest.GetBufferlessInputStream(disableMaxRequestLength: true);
+                        var input = realRequest.GetBufferlessInputStream();
                         if (request.Headers["Content-Encoding"] == "gzip")
                         {
                             input = wrapperStream = new GZipStream(input, CompressionMode.Decompress);
